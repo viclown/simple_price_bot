@@ -1,12 +1,13 @@
 import telebot
 from binance.spot import Spot
+from typing import Tuple
 
 
 client = Spot()
 bot = telebot.TeleBot('secret_token')
 
 
-def get_price(currency: str) -> float:
+def get_price(currency: str) -> Tuple[float]:
     info = client.klines(currency+"USDT", "1m", limit=1)
     sell_price = float(info[0][2])
     buy_price = float(info[0][3])
